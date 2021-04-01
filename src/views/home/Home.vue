@@ -1,10 +1,17 @@
 <template>
-  <div>首页</div>
+  <div>
+    <home-nav-bar/>
+  </div>
+
 </template>
 
 <script>
+  import HomeNavBar from './child/HomeNavBar'
   export default {
-    name: "Home"
+    name: "Home",
+    components: {
+      HomeNavBar
+    }
   }
 </script>
 
