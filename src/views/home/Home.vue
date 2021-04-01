@@ -30,7 +30,7 @@
     created() {
       //获得数据，并赋值到data中
       req.getMultiData().then(res => {
-        // console.log(res);
+        console.log(res);
         this.banners = res.data.banner.list
         this.recommends = res.data.recommend.list
       }).catch(err => {

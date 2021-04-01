@@ -1,9 +1,12 @@
 <template>
   <div id="recommend">
     <div v-for="recommend in recommends" class="recommend-item">
-      <img :src="recommend.image" alt="">
-      <div class="recommend-item-text">{{recommend.title}}</div>
+      <a :href="recommend.link">
+        <img :src="recommend.image" alt="">
+        <div class="recommend-item-text">{{recommend.title}}</div>
+      </a>
     </div>
+
   </div>
 </template>
 
