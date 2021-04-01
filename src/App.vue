@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-      <h1>alia test</h1>
-    <img src="~/assets/img/aliatest.png" alt="">
+    <router-view></router-view>
+    <main-tab-bar/>
   </div>
 </template>
 
 <script>
+import MainTabBar from 'components/content/MainTabBar'
 
 export default {
   name: 'App',
   components: {
+    MainTabBar,
   }
 }
 </script>
