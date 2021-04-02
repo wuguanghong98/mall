@@ -31,5 +31,7 @@
 </script>
 
 <style scoped>
-
+  #Banner{
+    padding-top: 44px;
+  }
 </style>

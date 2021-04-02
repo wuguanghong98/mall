@@ -1,8 +1,10 @@
 <template>
-  <div id="navBar">
-    <div class="left"><slot name="left"></slot></div>
-    <div class="center"><slot name="center"></slot></div>
-    <div class="right"><slot name="right"></slot></div>
+  <div id="navBar_div">
+    <div id="navBar">
+      <div class="navBar_left"><slot name="left"> </slot></div>
+      <div class="navBar_center"><slot name="center"></slot></div>
+      <div class="navBar_right"><slot name="right"> </slot></div>
+    </div>
   </div>
 </template>
 
@@ -16,6 +18,12 @@
   @import "~assets/css/base.css";
 
 
+  #navBar_div{
+    width: 100%;
+    position: fixed;
+    z-index: 9;
+  }
+
   #navBar{
     background-color: var(--color-tint);
     height: 44px;
@@ -23,11 +31,13 @@
     line-height: 44px;
     text-align: center;
   }
-  .left,.right{
+
+  .navBar_left,.navBar_right{
     width: 60px;
   }
-  .center{
-    flex: 1;
+  .navBar_center{
+    /*//使其充满剩余部分*/
+    flex: 1px;
     color: var(--color-background);
   }
 </style>

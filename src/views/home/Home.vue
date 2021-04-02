@@ -3,6 +3,64 @@
     <home-nav-bar/>
     <home-banner :banners="banners"></home-banner>
     <home-recommend :recommends="recommends"></home-recommend>
+    <home-feature></home-feature>
+    <ul><li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li><li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li><li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li><li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li><li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+    </ul>
   </div>
 
 </template>
@@ -11,6 +69,7 @@
   import HomeNavBar from './child/HomeNavBar'
   import HomeBanner from './child/HomeBanner'
   import HomeRecommend from './child/HomeRecommend'
+  import HomeFeature from './child/HomeFeature'
 
   import * as req from 'network/requestMethods'
 
@@ -19,7 +78,8 @@
     components: {
       HomeNavBar,
       HomeBanner,
-      HomeRecommend
+      HomeRecommend,
+      HomeFeature
     },
     data(){
       return {

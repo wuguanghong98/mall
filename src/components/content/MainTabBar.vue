@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tab-bar>
+    <tab-bar id="tab_bar">
       <tab-bar-item path="/home" textColor="blue">
         <img slot="tabBarItemImage" src="~assets/img/tabbar/home.svg" alt="">
         <img slot="tabBarItemImageActive" src="~assets/img/tabbar/home_active.svg" alt="">
@@ -38,5 +38,8 @@
 </script>
 
 <style scoped>
+  #tab_bar{
+    background-color: var(--color-background);
 
+  }
 </style>

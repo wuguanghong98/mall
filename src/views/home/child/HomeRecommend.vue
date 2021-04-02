@@ -6,7 +6,6 @@
         <div class="recommend-item-text">{{recommend.title}}</div>
       </a>
     </div>
-
   </div>
 </template>
 

@@ -20,5 +20,6 @@
     bottom: 0;
     align-items: center;
     height: 49px;
+    box-shadow: -1px 0 10px rgb(100,100,100);
   }
 </style>
