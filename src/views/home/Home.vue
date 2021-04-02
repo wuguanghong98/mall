@@ -4,6 +4,7 @@
     <home-banner :banners="banners"></home-banner>
     <home-recommend :recommends="recommends"></home-recommend>
     <home-feature></home-feature>
+    <home-tab-control/>
     <ul><li>test</li>
       <li>test</li>
       <li>test</li>
@@ -70,6 +71,8 @@
   import HomeBanner from './child/HomeBanner'
   import HomeRecommend from './child/HomeRecommend'
   import HomeFeature from './child/HomeFeature'
+  import HomeTabControl from './child/HomeTabControl'
+
 
   import * as req from 'network/requestMethods'
 
@@ -79,7 +82,8 @@
       HomeNavBar,
       HomeBanner,
       HomeRecommend,
-      HomeFeature
+      HomeFeature,
+      HomeTabControl
     },
     data(){
       return {
