@@ -1,5 +1,5 @@
 <template>
-  <div id="navBar_div">
+  <div id="navBar_div" :style="{backgroundColor: backgroundColor,color:color}">
     <div id="navBar">
       <div class="navBar_left"><slot name="left"> </slot></div>
       <div class="navBar_center"><slot name="center"></slot></div>
@@ -10,7 +10,17 @@
 
 <script>
   export default {
-    name: "NavBar"
+    name: "NavBar",
+    props: {
+      backgroundColor: {
+        type: String,
+        default: '#ff8198'
+      },
+      color: {
+        type: String,
+        default: 'white'
+      }
+    }
   }
 </script>
 
@@ -25,7 +35,7 @@
   }
 
   #navBar{
-    background-color: var(--color-tint);
+    /*background-color: var(--color-tint);*/
     height: 44px;
     display: flex;
     line-height: 44px;
@@ -38,6 +48,6 @@
   .navBar_center{
     /*//使其充满剩余部分*/
     flex: 1px;
-    color: var(--color-background);
+    /*color: var(--color-background);*/
   }
 </style>

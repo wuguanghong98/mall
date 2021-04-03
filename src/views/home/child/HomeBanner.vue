@@ -3,7 +3,7 @@
     <swiper>
       <swiper-item v-for="banner in banners">
           <a :href="banner.link">
-            <img :src="banner.image" alt="">
+            <img :src="banner.image" alt="" @load="bannerImgLoad">
           </a>
       </swiper-item>
     </swiper>
@@ -26,12 +26,23 @@
     components: {
       Swiper,
       SwiperItem
+    },
+    data(){
+      return {
+        emitNum: 0
+      }
+    },
+    methods:{
+      bannerImgLoad(){
+        if(this.emitNum == 0){
+        this.$emit('bannerImgLoad')
+        this.emitNum++
+        }
+      }
     }
   }
 </script>
 
 <style scoped>
-  #Banner{
-    padding-top: 44px;
-  }
+
 </style>

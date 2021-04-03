@@ -1,13 +1,11 @@
 <template>
-  <div class="goods">
-    <a :href="goods.link">
-    <img :src="goods.show.img" alt="" :key="goods_image" >
+  <div class="goods" @click="toDetailClick">
+    <img :src="goods.show.img" alt="" :key="goods_image" @load="goodsImgLoad">
       <div class="goods-info">
         <p>{{goods.title}}</p>
         <span class="price">{{goods.price}}</span>
         <span class="collect">{{goods.cfav}}</span>
       </div>
-    </a>
   </div>
 
 </template>
@@ -22,6 +20,19 @@
     },
     props: {
       goods: Object,
+    },
+    methods: {
+      goodsImgLoad(){
+        this.$bus.$emit("goodsImgLoad")
+      },
+      toDetailClick(){
+        this.$router.push({
+          path: '/detail',
+          query: {
+            iid: this.goods.iid
+          }
+        })
+      }
     }
   }
 </script>

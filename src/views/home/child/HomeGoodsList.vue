@@ -11,7 +11,7 @@
   export default {
     name: "HomeGoodsList",
     components: {
-      GoodsListItem
+      GoodsListItem,
     },
     props: {
       goodsList: {
@@ -20,7 +20,8 @@
           return []
         }
       }
-    }
+    },
+
   }
 </script>
 
