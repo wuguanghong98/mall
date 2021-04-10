@@ -55,18 +55,9 @@
         </div>
       </div>
     </div>
-    <ul>
-      <li>sdfsd1</li>
-      <li>sdfsd2</li>
-      <li>sdfsd3</li>
-      <li>sdfsd4</li>
-      <li>sdfsd5</li>
-      <li>sdfsd6</li>
-      <li>sdfsd7</li>
-      <li>sdfsd8</li>
-      <li>sdfsd9</li>
-      <li>sdfsd10</li>
-    </ul>
+    <div class="shop-info-detail">进店逛逛</div>
+    <div class="under-line"></div>
+
   </div>
 </template>
 
@@ -219,5 +210,17 @@
   }
   .score-low {
     color: #5ea732;
+  }
+  .shop-info-detail {
+    background-color: #f2f5f8;
+    text-align: center;
+    padding: 8px 40px;
+    width: 150px;
+    transform: translate(70%);
+    border-radius: 12px;
+  }
+  .under-line {
+    padding-top: 25px;
+    border-bottom: 5px solid #f2f5f8;
   }
 </style>

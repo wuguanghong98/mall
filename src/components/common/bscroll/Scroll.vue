@@ -34,6 +34,9 @@
       },
       getY(){
         return this.BScroll.y
+      },
+      refresh() {
+        this.BScroll.refresh()
       }
     }
 

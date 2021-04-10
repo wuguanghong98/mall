@@ -1,11 +1,13 @@
 <template>
   <div class="detail">
     <detail-nav-bar/>
-    <scroll class="scroll">
+    <scroll class="scroll" ref="scroll">
       <detail-swiper :topImg="topImg"/>
       <detail-goods-base-info
         :goodsBaseInfo="goodsBaseInfo"
         :shopInfo="shopInfo"/>
+      <detail-goods-desc :desc="desc"/>
+      <detail-goods-effect :shopInfoEffect="shopInfoEffect" @goodsEffectImgLoad="goodsEffectImgLoad"/>
     </scroll>
     iid:{{$route.query.iid}}
   </div>
@@ -15,6 +17,8 @@
   import DetailNavBar from './children/DetailNavBar'
   import DetailSwiper from './children/DetailSwiper'
   import DetailGoodsBaseInfo from './children/DetailGoodsBaseInfo'
+  import DetailGoodsDesc from './children/DetailGoodsDesc'
+  import DetailGoodsEffect from './children/DetailGoodsEffect'
 
   import Scroll from 'components/common/bscroll/Scroll'
 
@@ -29,13 +33,17 @@
       DetailNavBar,
       DetailSwiper,
       DetailGoodsBaseInfo,
+      DetailGoodsDesc,
+      DetailGoodsEffect,
       Scroll
     },
     data() {
       return {
         topImg: null,
         goodsBaseInfo: {},
-        shopInfo: {}
+        shopInfo: {},
+        desc: null,
+        shopInfoEffect: {}
       }
     },
     created(){
@@ -46,7 +54,15 @@
 
         this.goodsBaseInfo = new GoodsBaseInfo(data.itemInfo, data.columns, data.shopInfo.services)
         this.shopInfo = new shopInfo(data.shopInfo)
+        this.desc = data.itemInfo.desc
+        this.shopInfoEffect = data.detailInfo.detailImage[0]
       })
+    },
+    methods: {
+      goodsEffectImgLoad() {
+        this.$refs.scroll.refresh()
+      }
+
     }
   }
 </script>
