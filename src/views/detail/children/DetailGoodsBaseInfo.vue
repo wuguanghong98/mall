@@ -26,26 +26,31 @@
     <div class="shopInfo">
       <div class="shop-info-title">
         <img :src="shopInfo.shopLogo" alt="">
-        {{shopInfo.name}}
+        <span>{{shopInfo.name}}</span>
       </div>
-      <div>
-        <div>
-          <div>
-            <p>{{shopInfo.cSells}}</p>
-            <p>总销量</p>
+      <div class="shop-info-content">
+        <div class="detail-sell">
+          <div class="detail-sell-div">
+            <p class="detail-sell-div-num">{{getTotalSell}}</p>
+            <p class="detail-sell-div-des">总销量</p>
           </div>
           <div>
-            <p>{{shopInfo.cGoods}}</p>
-            <p>全部宝贝</p>
+            <p class="detail-sell-div-num">{{shopInfo.cGoods}}</p>
+            <p class="detail-sell-div-des">全部宝贝</p>
           </div>
         </div>
-        <div>
+        <div class="shop-info-grade">
             <div v-for="(score, index) in shopInfo.scores"
-                 :key="index">
-              <span>{{score.name}}</span>
-              <span>{{score.score}}</span>
-              <span v-if="score.isBetter">高</span>
-              <span v-else>低</span>
+                 :key="index" class="shop-info-score">
+              <span class="shop-info-score-name">{{score.name}}</span>
+              <span v-if="score.isBetter" class="score-high">
+                <span class="shop-info-score-score ">{{score.score}}</span>
+                  <span style="background-color: #f13e3a; color: white">高</span>
+                </span>
+              <span v-else class="score-low">
+                <span class="shop-info-score-score">{{score.score}}</span>
+                  <span style="background-color: #5ea732; color: white">低</span>
+              </span>
             </div>
         </div>
       </div>
@@ -80,6 +85,11 @@
         default() {
           return {}
         }
+      }
+    },
+    computed:{
+      getTotalSell(){
+        return (this.shopInfo.cSells/10000).toFixed(1) + '万'
       }
     }
   }
@@ -152,8 +162,62 @@
     width: 50px;
     height: 50px;
     border-radius: 25px;
+    border: solid 1px rgba(1,1,1,.2);
   }
   .shop-info-title {
-    /*line-height: 54px;*/
+    height: 54px;
+    line-height: 54px;
+  }
+  .shop-info-title span {
+    position: relative;
+    bottom: 22px;
+    left: 10px;
+  }
+  .shop-info-content {
+    padding-top: 20px;
+    display: flex;
+  }
+  .detail-sell {
+    display: flex;
+    border-right: 1px solid rgba(100,100,100,.1);
+    width: calc(50%);
+    /*padding: 20px;*/
+    padding-right: 20px;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    height: 60px;
+  }
+  .detail-sell-div {
+    flex: 1;
+    text-align: center;
+  }
+  .detail-sell-div-num {
+    /*font-weight: bold;*/
+    font-size: 20px;
+    padding: 10px;
+  }
+  .detail-sell-div-des {
+    font-size: 13px;
+  }
+  .shop-info-grade {
+    flex: 1;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+  .shop-info-score {
+    padding-bottom: 15px;
+  }
+  .shop-info-score-name {
+    padding-right: 10px;
+  }
+  .shop-info-score-score {
+    display: inline-block;
+    width: 40px;
+  }
+  .score-high {
+    color: #f13e3a;;
+  }
+  .score-low {
+    color: #5ea732;
   }
 </style>
