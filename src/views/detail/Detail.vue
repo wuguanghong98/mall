@@ -10,6 +10,7 @@
       <detail-goods-effect :shopInfoEffect="shopInfoEffect" @goodsEffectImgLoad="goodsEffectImgLoad"/>
       <detail-goods-param :tableParams="tableParams" :paramInfoSet="paramInfoSet"/>
       <detail-goods-rate :user="user" :rateInfo="rateInfo"/>
+      <detail-recommend/>
       <ul>
         <li>1</li>
         <li>2</li>
@@ -53,6 +54,7 @@
   import DetailGoodsEffect from './children/DetailGoodsEffect'
   import DetailGoodsParam from './children/DetailGoodsParam'
   import DetailGoodsRate from './children/DetailGoodsRate'
+  import DetailRecommend from './children/DetailRecommend'
 
   import Scroll from 'components/common/bscroll/Scroll'
 
@@ -71,6 +73,7 @@
       DetailGoodsEffect,
       DetailGoodsParam,
       DetailGoodsRate,
+      DetailRecommend,
       Scroll
     },
     data() {

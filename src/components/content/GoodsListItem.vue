@@ -1,6 +1,7 @@
 <template>
   <div class="goods" @click="toDetailClick">
-    <img :src="goods.show.img" alt="" :key="goods_image" @load="goodsImgLoad">
+    <img :src="goods.show.img" alt=""
+         :key="goods_image" @load="goodsImgLoad">
       <div class="goods-info">
         <p>{{goods.title}}</p>
         <span class="price">{{goods.price}}</span>
