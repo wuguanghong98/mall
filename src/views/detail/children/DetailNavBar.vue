@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail-nav-bar-div">
     <nav-bar :backgroundColor="backgroundColor"
              :color="navBarColor"
              class="navBar">
@@ -50,6 +50,11 @@
 </script>
 
 <style scoped>
+  .detail-nav-bar-div{
+    position: relative;
+    z-index: 11;
+  }
+
   .detail_nav_bar_center{
     display: flex;
   }
