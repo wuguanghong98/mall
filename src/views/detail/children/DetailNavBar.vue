@@ -32,9 +32,20 @@
         currentIndex: 0,
       }
     },
+    props: {
+      NBCurrentIndex: {
+        type: Number,
+        default: 0
+      }
+    },
+    watch: {
+      NBCurrentIndex() {
+        this.currentIndex = this.NBCurrentIndex
+      }
+    },
     computed: {
       iid(){
-        console.log(this.$route.query);
+        // console.log(this.$route.query);
         return this.$route.query
       }
     },
@@ -44,6 +55,7 @@
       },
       titleClick(index){
         this.currentIndex = index
+        this.$emit('titleClick',this.currentIndex)
       }
     }
   }

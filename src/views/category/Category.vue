@@ -1,7 +1,8 @@
 <template>
   <div class="wrapper" ref="wrapper">
     <div class="content">
-
+      <toast ref="toast"/>
+      <button @click="showToast">点击显示toast</button>
       <ul>
         <li>数据1</li>
         <li>数据2</li>
@@ -111,8 +112,12 @@
 
 <script>
   import BScroll from 'better-scroll'
+  import Toast from 'components/common/toast/Toast'
   export default {
     name: "Category",
+    components: {
+      Toast
+    },
     data(){
       return {
         BScroll: null
@@ -136,6 +141,9 @@
     methods: {
       weClick(){
         this.BScroll.scrollTo(0,0,4000)
+      },
+      showToast() {
+        this.$refs.toast.show('我是toast内容')
       }
     }
   }

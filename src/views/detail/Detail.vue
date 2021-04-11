@@ -1,18 +1,22 @@
 <template>
   <div class="detail">
-    <detail-nav-bar/>
+    <detail-nav-bar @titleClick="titleClick" :NBCurrentIndex="NBCurrentIndex"/>
     <scroll class="scroll" ref="scroll">
       <detail-swiper :topImg="topImg"/>
       <detail-goods-base-info
         :goodsBaseInfo="goodsBaseInfo"
         :shopInfo="shopInfo"/>
       <detail-goods-desc :desc="desc"/>
-      <detail-goods-effect :shopInfoEffect="shopInfoEffect" @goodsEffectImgLoad="goodsEffectImgLoad"/>
-      <detail-goods-param :tableParams="tableParams" :paramInfoSet="paramInfoSet"/>
-      <detail-goods-rate :user="user" :rateInfo="rateInfo"/>
-      <detail-recommend/>
+      <detail-goods-effect
+        :shopInfoEffect="shopInfoEffect"
+        @goodsEffectImgLoad="goodsEffectImgLoad"
+        @effectImgLoadEnd="effectImgLoadEnd"/>
+      <detail-goods-param ref="param" :tableParams="tableParams" :paramInfoSet="paramInfoSet"/>
+      <detail-goods-rate ref="rate" :user="user" :rateInfo="rateInfo"/>
+      <detail-recommend ref="recommend"/>
     </scroll>
-    iid:{{$route.query.iid}}
+    <detail-tabbar @addCart="addCart"/>
+
   </div>
 </template>
 
@@ -25,12 +29,16 @@
   import DetailGoodsParam from './children/DetailGoodsParam'
   import DetailGoodsRate from './children/DetailGoodsRate'
   import DetailRecommend from './children/DetailRecommend'
+  import DetailTabbar from './children/DetailTabbar'
 
   import Scroll from 'components/common/bscroll/Scroll'
 
+  import * as type from 'store/mutations_type.js'
+
   import {getGoodsInfo,
           GoodsBaseInfo,
-          shopInfo}
+          shopInfo,
+          cartGoodsInfo}
           from "network/detail";
 
   export default {
@@ -44,6 +52,7 @@
       DetailGoodsParam,
       DetailGoodsRate,
       DetailRecommend,
+      DetailTabbar,
       Scroll
     },
     data() {
@@ -56,12 +65,43 @@
         tableParams: [],
         paramInfoSet: [],
         user: {},
-        rateInfo: {}
+        rateInfo: {},
+        titlePosition: [0,-1000,-2000,-3000],
+        NBCurrentIndex: 0,
+        cartGoodsInfo: {}
+      }
+    },
+    methods: {
+      //穿着效果展示部分图片加载完成后，刷新scroll的可滚动区域
+      goodsEffectImgLoad() {
+        this.$refs.scroll.refresh()
+      },
+      //穿着效果部分图片加载完之后获得offsetTop
+      effectImgLoadEnd() {
+        // console.log(this.$refs.param.$el.offsetTop);
+        this.titlePosition[1] = -this.$refs.param.$el.offsetTop
+        this.titlePosition[2] = -(this.$refs.rate.$el.offsetTop - 44)
+        this.titlePosition[3] = -(this.$refs.recommend.$el.offsetTop - 44)
+      },
+      titleClick(index) {
+        this.$refs.scroll.scrollTo(0,this.titlePosition[index])
+      },
+      //将商品添加到购物车
+      addCart() {
+        this.$store.dispatch(type.ADD_CART,this.cartGoodsInfo).then(res => {
+          this.$toast.show(res)
+        }).catch(err => {
+          this.$toast.show(err)
+        })
       }
     },
     created(){
+      //获得详情中商品所相关的信息
       getGoodsInfo(this.$route.query.iid).then(res => {
         console.log(res);
+        //获得详情所构建的购物车数据
+        this.cartGoodsInfo = new cartGoodsInfo(res)
+        // console.log(this.cartGoodsInfo);
         const data = res.result
         this.topImg = data.itemInfo.topImages
 
@@ -73,18 +113,26 @@
         this.paramInfoSet = data.itemParams.info.set
         this.user = data.rate.list[0].user
         this.rateInfo = data.rate.list[0]
+
       })
 
+      //推荐部分图片加载完成后，刷新scroll的可滚动区域
       this.$bus.$on('goodsImgLoad', () => {
         this.$refs.scroll.refresh()
       })
     },
-    methods: {
-      goodsEffectImgLoad() {
-        this.$refs.scroll.refresh()
-      }
-
+    mounted() {
+      this.$refs.scroll.on('scroll',position => {
+        for(let i in this.titlePosition){
+          if(position.y <= this.titlePosition[i]){
+            // console.log(i);
+            this.NBCurrentIndex = Number.parseInt(i)
+          }
+        }
+        // console.log(this.NBCurrentIndex);
+      })
     }
+
   }
 </script>
 
@@ -93,7 +141,7 @@
     height: 100vh;
   }
  .scroll {
-   height: calc(100%);
+   height: calc(100% - 49px - 5px);
    position: relative;
    z-index: 10;
    overflow: hidden;

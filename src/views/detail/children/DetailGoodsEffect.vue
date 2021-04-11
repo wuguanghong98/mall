@@ -12,6 +12,11 @@
 <script>
   export default {
     name: "DetailGoodsEffect",
+    data() {
+      return{
+        effectImgNumber: 0
+      }
+    },
     props: {
       shopInfoEffect: {
         type: Object,
@@ -20,9 +25,18 @@
         }
       }
     },
+    updated() {
+      // console.log(this.shopInfoEffect.list.length);
+      this.effectImgNumber = this.shopInfoEffect.list.length
+    },
     methods: {
       goodsEffectImgLoad(){
         this.$emit('goodsEffectImgLoad')
+        this.effectImgNumber -= 1
+        if(this.effectImgNumber == 0)this.imgLoad()
+      },
+      imgLoad() {
+        this.$emit('effectImgLoadEnd')
       }
     }
   }

@@ -31,3 +31,14 @@ export class shopInfo {
     this.scores = shopInfo.score
   }
 }
+
+export class cartGoodsInfo {
+  constructor(res) {
+    this.iid = res.iid
+    let data = res.result
+    this.desc = data.detailInfo.desc
+    this.price = data.itemInfo.highNowPrice
+    this.image = data.itemInfo.topImages[0]
+    this.number = 1
+  }
+}
