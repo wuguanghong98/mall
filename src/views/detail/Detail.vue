@@ -98,7 +98,7 @@
     created(){
       //获得详情中商品所相关的信息
       getGoodsInfo(this.$route.query.iid).then(res => {
-        console.log(res);
+        // console.log(res);
         //获得详情所构建的购物车数据
         this.cartGoodsInfo = new cartGoodsInfo(res)
         // console.log(this.cartGoodsInfo);

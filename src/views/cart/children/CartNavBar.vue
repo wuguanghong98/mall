@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-bar>
-      <div slot="center" class="nav-bar-content">购物车(0)</div>
+      <div slot="center" class="nav-bar-content">购物车({{cartListLength}})</div>
     </nav-bar>
   </div>
 </template>
@@ -12,6 +12,12 @@
     name: "CartNavBar",
     components: {
       NavBar
+    },
+    props: {
+      cartListLength: {
+        type: Number,
+        default: 0
+      }
     }
   }
 </script>

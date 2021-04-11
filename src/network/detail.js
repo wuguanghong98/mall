@@ -37,8 +37,10 @@ export class cartGoodsInfo {
     this.iid = res.iid
     let data = res.result
     this.desc = data.detailInfo.desc
+    this.title = data.itemInfo.title
     this.price = data.itemInfo.highNowPrice
     this.image = data.itemInfo.topImages[0]
     this.number = 1
+    this.isSelect = true
   }
 }

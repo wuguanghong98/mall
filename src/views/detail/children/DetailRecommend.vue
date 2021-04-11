@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-recommend">
+  <div class="detail-recommend" v-if="Object.keys(recommends).length != 0">
     <div class="content">
       <div>热门推荐</div>
     </div>

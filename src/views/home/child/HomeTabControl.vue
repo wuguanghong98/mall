@@ -1,6 +1,6 @@
 <template>
   <tab-control :titles="['流行','新款','精选']" :currentIndex="currentIn" id="home_tab_control"
-               @tabControlClick="tabControlClick"/>
+               @tabControlClick="tabControlClick" v-if="Object.keys(currentIn).length != 0"/>
 </template>
 
 <script>

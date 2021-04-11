@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-goods-param-div">
+  <div class="detail-goods-param-div" v-if="Object.keys(tableParams).length != 0">
     <div class="split-line"></div>
     <div class="detail-goods-param">
       <table class="param-rule-table">

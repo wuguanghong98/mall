@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-rate-div">
+  <div class="goods-rate-div" v-if="Object.keys(user).length != 0">
     <div class="content">
       <div class="rate-title">
         用户评价

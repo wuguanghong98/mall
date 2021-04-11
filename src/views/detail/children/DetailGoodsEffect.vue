@@ -1,5 +1,5 @@
 <template>
-  <div class="shop-info-effect">
+  <div class="shop-info-effect" v-if="Object.keys(shopInfoEffect).length != 0">
     <div class="shop-info-effect-key">
       {{shopInfoEffect.key}}
     </div>

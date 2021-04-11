@@ -7,7 +7,7 @@ export default {
     comp.$mount(document.createElement('div'))
     document.body.appendChild(comp.$el)
     Vue.prototype.$toast = comp
-    console.log('--');
+    // console.log('--');
   }
 }
 
