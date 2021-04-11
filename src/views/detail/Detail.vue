@@ -35,6 +35,8 @@
 
   import * as type from 'store/mutations_type.js'
 
+  import {debounce} from "common/utils";
+
   import {getGoodsInfo,
           GoodsBaseInfo,
           shopInfo,
@@ -74,7 +76,8 @@
     methods: {
       //穿着效果展示部分图片加载完成后，刷新scroll的可滚动区域
       goodsEffectImgLoad() {
-        this.$refs.scroll.refresh()
+        console.log('effect refresh1')
+        this.refresh()
       },
       //穿着效果部分图片加载完之后获得offsetTop
       effectImgLoadEnd() {
@@ -83,6 +86,7 @@
         this.titlePosition[2] = -(this.$refs.rate.$el.offsetTop - 44)
         this.titlePosition[3] = -(this.$refs.recommend.$el.offsetTop - 44)
       },
+      //点击标签部分，跳到相应的部分
       titleClick(index) {
         this.$refs.scroll.scrollTo(0,this.titlePosition[index])
       },
@@ -93,6 +97,11 @@
         }).catch(err => {
           this.$toast.show(err)
         })
+      },
+      //刷新scroll的可滚动高度
+      refresh() {
+        console.log('refresh方法中进行刷新');
+        this.$refs.scroll.refresh()
       }
     },
     created(){
@@ -116,10 +125,11 @@
 
       })
 
-      //推荐部分图片加载完成后，刷新scroll的可滚动区域
-      this.$bus.$on('goodsImgLoad', () => {
-        this.$refs.scroll.refresh()
-      })
+      //监听推荐图片加载事件，进行防抖操作
+      this.$bus.$on('goodsImgLoad', debounce(() => {
+        console.log('detail debounce');
+        this.refresh()
+      },100))
     },
     mounted() {
       this.$refs.scroll.on('scroll',position => {

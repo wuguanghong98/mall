@@ -4,6 +4,8 @@ import {request} from './request'
 export function getMultiData(){
   return request({
     url: '/home/multidata'
+  }).catch(err => {
+    alert("网络请求失败")
   })
 }
 
@@ -14,5 +16,7 @@ export function getGoodsListInfo(type,page){
       type,
       page
     }
+  }).catch(err => {
+    alert("网络请求失败")
   })
 }

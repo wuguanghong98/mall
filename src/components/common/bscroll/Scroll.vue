@@ -36,7 +36,7 @@
         return this.BScroll.y
       },
       refresh() {
-        this.BScroll.refresh()
+        this.BScroll && this.BScroll.refresh()
       }
     }
 

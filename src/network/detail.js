@@ -6,6 +6,8 @@ export function getGoodsInfo(iid){
     params: {
       iid,
     }
+  }).catch(err => {
+    alert("网络请求失败")
   })
 }
 

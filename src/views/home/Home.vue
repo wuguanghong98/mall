@@ -85,6 +85,7 @@
       }
     },
     created() {
+      // console.log('home creat');
       this.getMultiData()
       // 获取商品列表数据
       this.getGoodsListInfo('pop')
@@ -93,7 +94,12 @@
     },
     mounted(){
       // this.$bus.$on('goodsImgLoad',debounce(this.imgLoadRefresh,300))
-      this.$bus.$on('goodsImgLoad',this.imgLoadRefresh)
+      this.$bus.$on('goodsImgLoad',debounce(() => {
+        console.log('debounce');
+        this.imgLoadRefresh()
+      },100))
+
+
       this.$refs.home_scroll.on('scroll',(option) => {
         if((-option.y) > 1000)
           this.backTopIsShow = true
@@ -109,12 +115,16 @@
 
 
     },
+    destroyed() {
+      console.log('home distroyed ');
+    },
     methods: {
       bannerImgLoad(){
         this.tabControlPosition = this.$refs.tabControl.$el.offsetTop
       },
       imgLoadRefresh(){
-        this.$refs.home_scroll.BScroll.refresh()
+        // console.log('refresh number');
+        this.$refs.home_scroll.refresh()
       },
       /**
        * 事件

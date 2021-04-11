@@ -31,9 +31,12 @@
     },
     methods: {
       goodsEffectImgLoad(){
+        // console.log('emit');
         this.$emit('goodsEffectImgLoad')
         this.effectImgNumber -= 1
-        if(this.effectImgNumber == 0)this.imgLoad()
+        if(this.effectImgNumber == 0){
+          this.imgLoad()
+        }
       },
       imgLoad() {
         this.$emit('effectImgLoadEnd')
